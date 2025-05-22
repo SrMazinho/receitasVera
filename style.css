@@ -29,9 +29,7 @@ body {
   }
   
   .receitas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    padding: 0 20px; 
   }
   
   .card {
@@ -46,5 +44,50 @@ body {
     color: white;
     text-align: center;
     padding: 10px;
+  }
+
+  .foto-vera {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 300px;
+    margin-top: 20px;
+  }
+  
+  .imagem-destaque {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .imagem-destaque img {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  
+
+  .receitas {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px;
+  }
+  
+  .imagem-destaque {
+    flex-shrink: 0;
+    margin-left: 10px;
+  }
+  
+  .imagem-destaque img {
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  
+  .cards-container {
+    background-color: #fff3e0;
+    row-gap: 80px;
+  padding: 25px; 
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
   
