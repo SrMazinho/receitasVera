@@ -1,46 +1,100 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fale Conosco - Receitas da Vera</title>
-  <link rel="stylesheet" href="style.css">
+     
+    <meta charset="UTF-8">
+     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Fale Conosco - Receitas da Vera</title>
+     
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <header>
-    <nav class="menu">
-      <h1>Receitas da Vera</h1>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="receitas.html">Receitas</a></li>
-        <li><a href="sobre.html">Sobre nós</a></li>
-    </nav>
-  </header>
+      <header>
+            <nav class="menu">
+                  <h1>Receitas da Vera</h1>
+                  <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="receitas.html">Receitas</a></li>
+                        <li><a href="sobre.html">Sobre nós</a></li>
+            </ul>
+                </nav>
+          </header>
 
-  <main>
-    <section class="contato-form">
-      <h2>Entre em Contato</h2>
-      <p>Envie sua mensagem para a equipe Receitas da Vera. Responderemos o mais breve possível!</p>
+      <main>
+            <section class="contato-form">
+                  <h2>Entre em Contato</h2>
+                  <p>Envie sua mensagem para a equipe Receitas da Vera. Responderemos o mais breve possível!</p>
 
-      <form action="mailto:2021210220008@iesp.edu.br" method="post" enctype="text/plain">
-        <label for="nome">Seu Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+                  <form action="https://formspree.io/f/xrbkgpoa" method="POST" id="contact-form">
+                        <label for="nome">Seu Nome:</label>
+                        <input type="text" id="nome" name="nome" required>
+                       
+                        <label for="email">Seu E-mail:</label>
+                        <input type="email" id="email" name="_replyto" required>
 
-        <label for="email">Seu E-mail:</label>
-        <input type="email" id="email" name="email" required>
+                        <label for="mensagem">Sua Mensagem:</label>
+                        <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
+                       
+                        <button type="submit" class="btn-receita">Enviar Mensagem</button>
+                      </form>
 
-        <label for="mensagem">Sua Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
+                  <div id="form-success-message"
+                style="display: none; text-align: center; margin-top: 20px; color: green; font-weight: bold;">
+                        Sua mensagem foi enviada com sucesso! Agradecemos o contato.
+                      </div>
 
-        <button type="submit" class="btn-receita">Enviar Mensagem</button>
-      </form>
-    </section>
-  </main>
+                </section>
+          </main>
 
-  <footer>
-    <p>&copy; 2025 - Receitas da Vera</p>
-  </footer>
+      <footer>
+            <p>&copy; 2025 - Receitas da Vera</p>
+          </footer>
+
+     
+    <script>
+        const form = document.getElementById('contact-form');
+        const successMessage = document.getElementById('form-success-message');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            const formData = new FormData(form); // Pega os dados do formulário
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json' // Importante para o Formspree retornar JSON
+                    }
+                });
+
+                // Adicionei os console.log aqui, dentro do try, para ver a resposta do fetch
+                console.log('Formspree Response Status:', response.status);
+                const responseData = await response.json();
+                console.log('Formspree Response Data:', responseData);
+
+                if (response.ok) { // Se a resposta for de sucesso (status 200)
+                    form.reset(); // Limpa o formulário
+                    successMessage.style.display = 'block'; // Mostra a mensagem de sucesso
+                    setTimeout(() => { // Esconde a mensagem após alguns segundos
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                } else { // Se houve um erro no envio (status diferente de 200)
+                    alert('Houve um erro ao enviar a mensagem. Por favor, tente novamente.');
+                    console.error('Formspree error:', responseData);
+                }
+            } catch (error) { // Se houve um erro na requisição (ex: problema de rede)
+                console.error('Network error:', error);
+                alert('Houve um problema de conexão. Por favor, tente novamente.');
+            }
+        });
+    </script>
 
 </body>
+
 </html>
