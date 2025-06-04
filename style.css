@@ -58,6 +58,7 @@ body {
 }
 
 .btn-receita:hover {
+  cursor:pointer;
   background-color: #e05e32;
   border-color: #e05e32;
 }
