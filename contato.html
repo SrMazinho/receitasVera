@@ -42,8 +42,7 @@
                         <button type="submit" class="btn-receita">Enviar Mensagem</button>
                       </form>
 
-                  <div id="form-success-message"
-                style="display: none; text-align: center; margin-top: 20px; color: green; font-weight: bold;">
+                  <div id="form-success-message">
                         Sua mensagem foi enviada com sucesso! Agradecemos o contato.
                       </div>
 
@@ -73,10 +72,7 @@
                     }
                 });
 
-                // Adicionei os console.log aqui, dentro do try, para ver a resposta do fetch
-                console.log('Formspree Response Status:', response.status);
-                const responseData = await response.json();
-                console.log('Formspree Response Data:', responseData);
+             
 
                 if (response.ok) { // Se a resposta for de sucesso (status 200)
                     form.reset(); // Limpa o formulário
